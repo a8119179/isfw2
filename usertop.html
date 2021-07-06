@@ -24,6 +24,10 @@
             var userid = sessionStorage.getItem('userid');
             location.href = `update.html?userid=${userid}`;
         }
+
+        function buttonPressed0() {
+
+        }
     </script>
 
 </head>
@@ -31,6 +35,14 @@
 <body>
     <h1>ユーザトップ</h1>
     <p id="welcome"></p>
+    <br>
+    <p><a href="account.html">Creco家計簿</a></p>
+    <br>
+    <p><a href="deposit.html">入力する</a></p>
+    <br>
+    <p><a href="tweet.html">CrecoTL</a></p>
+    <br>
+    <p><a href="budget.html">予算を設定する</a></p>
     <br>
     <p><button onclick="buttonPressed()">ユーザ情報変更</button></p>
     <hr>

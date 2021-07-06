@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        function button1Pressed() {
+            execInsert();
+        }
+
+        async function execInsert() {
+            //var date = document.getElementById('tf4').value;
+            var expenseid = document.getElementById('tf1').value;
+            var content = document.getElementById('tf2').value;
+            var price = document.getElementById('tf3').value;
+
+            var sql = `insert into Accounts (expenseid, content, price) values("${expenseid}", "${content}", "${price}");`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+
+            document.getElementById('result').innerHTML = 'OK';
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>家計簿入力</h1>
+
+    費目id:<input id="tf1" value="" type="textfield">(ID一覧: 1. 食費　2. 日用品費　3. 娯楽費　4. 雑費)
+    <br>
+    内容:<input id="tf2" value="" type="textfield">
+    <br>
+    金額:<input id="tf3" value="" type="textfield">(出金なら-(マイナス)を金額の前につけてください)
+    <br>
+    <button onclick="button1Pressed()">入力</button>
+    <br>
+    <p id="result"></p>
+</body>
+
+</html>
