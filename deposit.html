@@ -21,12 +21,19 @@
             var expenseid = document.getElementById('tf1').value;
             var content = document.getElementById('tf2').value;
             var price = document.getElementById('tf3').value;
+            var userid = document.getElementById('tf4').value;
 
-            var sql = `insert into Accounts (expenseid, content, price) values("${expenseid}", "${content}", "${price}");`;
-            var objects = await osql.connect(sql);
-            console.log(objects);
+            sessionStorage.setItem('himoku', expenseid);
+            sessionStorage.setItem('naiyou', content);
+            sessionStorage.setItem('kingaku', price);
+            sessionStorage.setItem('anatanoid', userid);
+            location.href = 'deposit_to.html';
 
-            document.getElementById('result').innerHTML = 'OK';
+            //var sql = `insert into Accounts (expenseid, content, price, userid) values("${expenseid}", "${content}", "${price}", "${userid}");`;
+            //var objects = await osql.connect(sql);
+            //console.log(objects);
+
+            //document.getElementById('result').innerHTML = 'OK';
         }
     </script>
 
@@ -40,6 +47,8 @@
     内容:<input id="tf2" value="" type="textfield">
     <br>
     金額:<input id="tf3" value="" type="textfield">(出金なら-(マイナス)を金額の前につけてください)
+    <br>
+    あなたのID:<input id="tf4" value="" type="textfield">
     <br>
     <button onclick="button1Pressed()">入力</button>
     <br>

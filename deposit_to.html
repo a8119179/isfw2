@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        $(function () {
+            var qrtext = "approval.html";
+            var utf8qrtext = unescape(encodeURIComponent(qrtext));
+            $("#img-qr").html("");
+            $("#img-qr").qrcode({ text: utf8qrtext });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="img-qr"></div>
+</body>
+
+</html>

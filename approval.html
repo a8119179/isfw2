@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        function button1Pressed() {
+
+            execInsert();
+        }
+
+        function button2Pressed() {
+
+            document.getElementById('result').innerHTML = '承認しませんでした';
+        }
+
+        async function execInsert() {
+            var expenseid = sessionStorage.getItem('himoku');
+            var content = sessionStorage.getItem('naiyou');
+            var price = sessionStorage.getItem('kingaku');
+            var userid = sessionStorage.getItem('anatanoid');
+
+
+
+            var sql = `insert into Accounts (expenseid, content, price, userid) values("${expenseid}", "${content}", "${price}", "${userid}");`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+
+            document.getElementById('result').innerHTML = 'OK';
+        }
+    </script>
+
+</head>
+
+<body>
+    <button onclick="button1Pressed()">承認する</button>
+    <button onclick="button2Pressed()">承認しない</button>
+    <br>
+    <p id="result"></p>
+</body>
+
+</html>
