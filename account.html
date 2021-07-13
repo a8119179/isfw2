@@ -18,7 +18,7 @@
 
 
         async function execSelect() {
-            var sql = 'select * from Accounts';
+            var sql = 'select Accounts.date,Expenses.name as y,content,price from( Accounts inner join  Expenses on Accounts.expenseid = Expenses.id);';
             var objects = await osql.connect(sql);
             console.log(objects);
 
@@ -28,7 +28,7 @@
                 html = html + '<tr>';
                 var object = objects[i];
                 html = html + '<td>' + object.date + '</td>';
-                html = html + '<td>' + object.expenseid + '</td>';
+                html = html + '<td>' + object.y + '</td>';
                 html = html + '<td>' + object.content + '</td>';
                 html = html + '<td>' + object.price + '</td>';
                 //html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
