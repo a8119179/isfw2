@@ -18,7 +18,7 @@
 
 
         async function execSelect() {
-            var sql = 'select Accounts.id as w,Accounts.date,Expenses.name as y,content,price,Users.name as z, approval, Admit.name as m from( Accounts inner join  Expenses on Accounts.expenseid = Expenses.id inner join Users on Accounts.userid = Users.id inner join Users as Admit on Accounts.admitter = Admit.id);';
+            var sql = 'select Accounts.id as w,Accounts.date,Expenses.name as y,content,price,Users.name as z, approval, admitter from( Accounts inner join  Expenses on Accounts.expenseid = Expenses.id inner join Users on Accounts.userid = Users.id)';
             var objects = await osql.connect(sql);
             console.log(objects);
 
@@ -44,7 +44,7 @@
                 html = html + '<td>' + object.price + '</td>';
                 html = html + '<td>' + object.z + '</td>';
                 html = html + '<td>' + object.approval + '</td>';
-                html = html + '<td>' + object.m + '</td>';
+                html = html + '<td>' + object.admitter + '</td>';
                 //html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
                 //html = html + '<td>' + `<a href="javascript:OnLinkClick('${object.id}');">削除</a>` + '</td>';
                 html = html + '</tr>';
