@@ -25,14 +25,15 @@
             var html = '';
             html = html + '<table border="1">';
             html = html + '<tr>';
-            html = html + '<td>' + object.w + '</td>';
-            html = html + '<td>' + object.date + '</td>';
-            html = html + '<td>' + object.y + '</td>';
-            html = html + '<td>' + object.content + '</td>';
-            html = html + '<td>' + object.price + '</td>';
-            html = html + '<td>' + object.z + '</td>';
-            html = html + '<td>' + object.approval + '</td>';
-            html = html + '<td>' + object.m + '</td>';
+            html = html + '<th>' + "id" + '</th>';
+            html = html + '<th>' + "日付" + '</th>';
+            html = html + '<th>' + "費目" + '</th>';
+            html = html + '<th>' + "内容" + '</th>';
+            html = html + '<th>' + "金額" + '</th>';
+            html = html + '<th>' + "登録者" + '</th>';
+            html = html + '<th>' + "承認状況" + '</th>';
+            html = html + '<th>' + "承認者" + '</th>';
+            html = html + '</tr>';
             for (var i = 0; i < objects.length; i++) {
                 html = html + '<tr>';
                 var object = objects[i];
@@ -78,7 +79,7 @@
     <h2>現在の残高</h2>
     <p id="sum"></p>
     <br>
-
+    <h2>明細一覧</h2>
     <p id="result"></p>
 </body>
 
