@@ -23,15 +23,17 @@
             var price = document.getElementById('tf3').value;
             var userid = document.getElementById('tf4').value;
 
-            sessionStorage.setItem('himoku', expenseid);
-            sessionStorage.setItem('naiyou', content);
-            sessionStorage.setItem('kingaku', price);
-            sessionStorage.setItem('anatanoid', userid);
-            location.href = 'deposit_to.html';
+            //sessionStorage.setItem('himoku', expenseid);
+            //sessionStorage.setItem('naiyou', content);
+            //sessionStorage.setItem('kingaku', price);
+            //sessionStorage.setItem('anatanoid', userid);
 
-            //var sql = `insert into Accounts (expenseid, content, price, userid) values("${expenseid}", "${content}", "${price}", "${userid}");`;
-            //var objects = await osql.connect(sql);
-            //console.log(objects);
+
+            var sql = `insert into Accounts (expenseid, content, price, userid) values("${expenseid}", "${content}", "${price}", "${userid}");`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+
+            location.href = 'deposit_to.html';
 
             //document.getElementById('result').innerHTML = 'OK';
         }

@@ -22,16 +22,22 @@
         }
 
         async function execInsert() {
-            var expenseid = sessionStorage.getItem('himoku');
-            var content = sessionStorage.getItem('naiyou');
-            var price = sessionStorage.getItem('kingaku');
-            var userid = sessionStorage.getItem('anatanoid');
+            var admitter = document.getElementById('tf1').value;
 
+            var sql1 = `select id from Accounts order by date desc limit 1;`;
+            var objects1 = await osql.connect(sql1);
+            console.log(objects1);
 
+            for (var i = 0; i < objects1.length; i++) {
+                var object = objects1[i];
+                var des = object.id;
+                console.log(des);
+            }
 
-            var sql = `insert into Accounts (expenseid, content, price, userid) values("${expenseid}", "${content}", "${price}", "${userid}");`;
+            var sql = `update Accounts set approval="承認済み", admitter="${admitter}" where id="${des}"`;
             var objects = await osql.connect(sql);
             console.log(objects);
+
 
             document.getElementById('result').innerHTML = 'OK';
         }
@@ -40,10 +46,17 @@
 </head>
 
 <body>
+    <h1>承認画面</h1>
+    <br>
+    承認者ID入力:<input id="tf1" value="" type="textfield">
+    <br>
     <button onclick="button1Pressed()">承認する</button>
     <button onclick="button2Pressed()">承認しない</button>
     <br>
     <p id="result"></p>
+    <br>
+    <br>
+    <p><a href="account.html">Creco家計簿</a></p>
 </body>
 
 </html>

@@ -18,12 +18,21 @@
 
 
         async function execSelect() {
-            var sql = 'select Accounts.id as w,Accounts.date,Expenses.name as y,content,price,Users.name as z from( Accounts inner join  Expenses on Accounts.expenseid = Expenses.id inner join Users on Accounts.userid = Users.id);';
+            var sql = 'select Accounts.id as w,Accounts.date,Expenses.name as y,content,price,Users.name as z, approval, Admit.name as m from( Accounts inner join  Expenses on Accounts.expenseid = Expenses.id inner join Users on Accounts.userid = Users.id inner join Users as Admit on Accounts.admitter = Admit.id);';
             var objects = await osql.connect(sql);
             console.log(objects);
 
             var html = '';
             html = html + '<table border="1">';
+            html = html + '<tr>';
+            html = html + '<td>' + object.w + '</td>';
+            html = html + '<td>' + object.date + '</td>';
+            html = html + '<td>' + object.y + '</td>';
+            html = html + '<td>' + object.content + '</td>';
+            html = html + '<td>' + object.price + '</td>';
+            html = html + '<td>' + object.z + '</td>';
+            html = html + '<td>' + object.approval + '</td>';
+            html = html + '<td>' + object.m + '</td>';
             for (var i = 0; i < objects.length; i++) {
                 html = html + '<tr>';
                 var object = objects[i];
@@ -33,6 +42,8 @@
                 html = html + '<td>' + object.content + '</td>';
                 html = html + '<td>' + object.price + '</td>';
                 html = html + '<td>' + object.z + '</td>';
+                html = html + '<td>' + object.approval + '</td>';
+                html = html + '<td>' + object.m + '</td>';
                 //html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
                 //html = html + '<td>' + `<a href="javascript:OnLinkClick('${object.id}');">削除</a>` + '</td>';
                 html = html + '</tr>';

@@ -12,12 +12,27 @@
     <script>
         osql.requireLogin();
 
-        $(function () {
-            var qrtext = "approval.html";
-            var utf8qrtext = unescape(encodeURIComponent(qrtext));
-            $("#img-qr").html("");
-            $("#img-qr").qrcode({ text: utf8qrtext });
-        });
+        execInsert()
+
+        async function execInsert() {
+            var sql = `select id from Accounts order by date desc limit 1;`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                var des = object.id;
+                console.log(des);
+            }
+
+            $(function () {
+                var qrtext = "https://a8119179.github.io/isfw2/approval.html?id=" + des;
+                var utf8qrtext = unescape(encodeURIComponent(qrtext));
+                $("#img-qr").html("");
+                $("#img-qr").qrcode({ text: utf8qrtext });
+            });
+        }
+
     </script>
 
 </head>
