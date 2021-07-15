@@ -18,7 +18,7 @@
 
 
         async function execSelect() {
-            var sql = 'select Accounts.id as w,Accounts.date,Expenses.name as y,content,price,Users.name as z, approval, admitter from( Accounts inner join  Expenses on Accounts.expenseid = Expenses.id inner join Users on Accounts.userid = Users.id)';
+            var sql = 'select Accounts.id as w,Accounts.date,Expenses.name as y,content,price,Users.name as z, approval, admitter from( Accounts inner join  Expenses on Accounts.expenseid = Expenses.id inner join Users on Accounts.userid = Users.id) order by w asc;';
             var objects = await osql.connect(sql);
             console.log(objects);
 
